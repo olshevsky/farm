@@ -26,7 +26,7 @@ class StoreAnimalRequest extends FormRequest
         return [
             'number' => 'required|integer',
             'type' => 'string|max:255',
-            'years' => 'required|integer',
+            'years' => 'integer|digits:4|nullable',
         ];
     }
 }
