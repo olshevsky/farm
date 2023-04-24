@@ -1,5 +1,6 @@
 import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
+import Pagination from "@/Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
 
@@ -45,7 +46,7 @@ export default function Dashboard(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {animals.map(({ id, number, type, years }) => (
+                                    {animals.data.map(({ id, number, type, years }) => (
                                         <tr key={id}>
                                             <td className="border px-4 py-2">{ id }</td>
                                             <td className="border px-4 py-2">{ number }</td>
@@ -81,6 +82,7 @@ export default function Dashboard(props) {
                                     )}
                                 </tbody>
                             </table>
+                            <Pagination links={animals.links} className={'mt-4'}></Pagination>
                         </div>
                     </div>
                 </div>

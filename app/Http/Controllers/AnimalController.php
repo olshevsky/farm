@@ -17,7 +17,9 @@ class AnimalController extends Controller
     public function index()
     {
         return Inertia::render('Animals/Index', [
-            'animals' => Auth::user()->animals()->get()
+            'animals' => Auth::user()
+                ->animals()
+                ->paginate(10)
         ]);
     }
 

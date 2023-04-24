@@ -18,7 +18,9 @@ class FarmController extends Controller
     public function index()
     {
         return Inertia::render('Farms/Index', [
-            'farms' => Auth::user()->farms()->get()
+            'farms' => Auth::user()
+                ->farms()
+                ->paginate(10)
         ]);
     }
 
