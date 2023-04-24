@@ -38,7 +38,7 @@ export default function AnimalIndex(props) {
                             <table className="table-fixed w-full">
                                 <thead>
                                     <tr className="bg-gray-100">
-                                        <th className="px-4 py-2 w-20">No.</th>
+                                        <th className="px-4 py-2 w-20">Id</th>
                                         <th className="px-4 py-2">Number</th>
                                         <th className="px-4 py-2">Type name</th>
                                         <th className="px-4 py-2">Years</th>
