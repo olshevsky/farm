@@ -18,8 +18,10 @@ use App\Http\Controllers\FarmController;
 |
 */
 
-Route::resource('animals', AnimalController::class);
-Route::resource('farms', FarmController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('animals', AnimalController::class);
+    Route::resource('farms', FarmController::class);
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
