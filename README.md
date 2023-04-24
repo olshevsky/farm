@@ -1,6 +1,5 @@
 # Installation
 
-Note there is .env file in repo for quick setup, but all api keys will be revoked after few days.
 
 0. Clone repo and cd to project dir:
     - git clone https://github.com/olshevsky/farm.git
@@ -41,8 +40,8 @@ Note there is .env file in repo for quick setup, but all api keys will be revoke
     
 8. Urls:
    - App: http://localhost
-        1. admin@localhost/admin
-        2. user@localhost/user
+        - admin@localhost/admin
+        - user@localhost/user
        
    - PhpMyadmin: http://localhost:8080
-       1. root/password
+       - root/password
