@@ -4,14 +4,14 @@ import { Head, useForm, usePage, Link } from '@inertiajs/inertia-react';
 
 export default function Dashboard(props) {
 
-    // const [selectedAnimals, setSelectedAnimals] = useState([]);
-    const { farm, animals, selectedAnimals } = usePage().props;
+    const { farm, animals, selected } = usePage().props;
+    const [selectedAnimals, setSelectedAnimals] = useState(selected);
 
     const { data, setData, put, errors } = useForm({
         name: farm.name || "",
         email: farm.email || "",
         website: farm.website || "",
-        animals: []
+        animals: [...selected]
     });
 
     const handleAnimalChange = (event) => {

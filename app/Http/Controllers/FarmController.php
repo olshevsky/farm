@@ -82,7 +82,7 @@ class FarmController extends Controller
     {
         return Inertia::render('Farms/Edit', [
             'farm' => $farm,
-            'selectedAnimals' => $farm
+            'selected' => $farm
                 ->animals()
                 ->get()
                 ->pluck('id'),
@@ -104,6 +104,16 @@ class FarmController extends Controller
     public function update(UpdateFarmRequest $request, Farm $farm)
     {
         $farm->update($request->all());
+        Auth::user()
+            ->animals()
+            ->where('farm_id', $farm->id)
+            ->update(['farm_id' => NULL]);
+
+        Auth::user()
+            ->animals()
+            ->whereIn('id', $request->get('animals'))
+            ->update(['farm_id' => $farm->id]);
+
         return redirect()->route('farms.index');
     }
 
@@ -118,7 +128,7 @@ class FarmController extends Controller
     {
         Auth::user()
             ->animals()
-            ->find($farm->id)
+            ->where('farm_id', $farm->id)
             ->update(['farm_id' => NULL]);
         $farm->delete();
         return redirect()->route('farms.index');
