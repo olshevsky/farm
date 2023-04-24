@@ -7,7 +7,7 @@ export default function Dashboard(props) {
     const { animals } = usePage().props
 
     function destroy(e) {
-        if (confirm("Are you sure you want to delete this user?")) {
+        if (confirm("Are you sure you want to delete this animal?")) {
             Inertia.delete(route("animals.destroy", e.currentTarget.id));
         }
     }

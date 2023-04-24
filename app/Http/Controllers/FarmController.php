@@ -2,43 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFarmRequest;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class FarmController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
-        $farms = Farm::all();
-        return Inertia::render('Farms/Index', ['farms' => $farms]);
+        return Inertia::render('Farms/Index', [
+            'farms' => Auth::user()->farms()->get()
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Farms/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
-    public function store(Request $request)
+    public function store(StoreFarmRequest $request)
     {
-        //
+        $farm = new Farm();
+        $farm->fill($request->all());
+        $farm->user_id = Auth::user()->id;
+        $farm->save();
+
+        return redirect()->route('farms.index');
     }
 
     /**
@@ -55,34 +61,38 @@ class FarmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Farm $farm
+     * @return \Inertia\Response
      */
-    public function edit($id)
+    public function edit(Farm $farm)
     {
-        //
+        return Inertia::render('Farms/Edit', [
+            'farm' => $farm
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param StoreFarmRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(StoreFarmRequest $request, $id)
     {
-        //
+        Farm::find($id)->update($request->all());
+        return redirect()->route('farms.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        Farm::find($id)->delete();
+        return redirect()->route('farms.index');
     }
 }

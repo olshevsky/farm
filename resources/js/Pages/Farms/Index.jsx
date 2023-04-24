@@ -7,7 +7,7 @@ export default function Dashboard(props) {
     const { farms } = usePage().props
 
     function destroy(e) {
-        if (confirm("Are you sure you want to delete this user?")) {
+        if (confirm("Are you sure you want to delete this farm?")) {
             Inertia.delete(route("farms.destroy", e.currentTarget.id));
         }
     }
@@ -30,7 +30,7 @@ export default function Dashboard(props) {
                                     className="px-6 py-2 text-white bg-green-500 rounded-md focus:outline-none"
                                     href={ route("farms.create") }
                                 >
-                                    Create Post
+                                    Create Farm
                                 </Link>
                             </div>
 
@@ -75,7 +75,7 @@ export default function Dashboard(props) {
                                     {farms.length === 0 && (
                                         <tr>
                                             <td className="px-6 py-4 border-t" colSpan="4">
-                                                No contacts found.
+                                                No farms found.
                                             </td>
                                         </tr>
                                     )}
