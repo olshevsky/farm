@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Animal;
 
 class Farm extends Model
 {
@@ -12,4 +13,9 @@ class Farm extends Model
     protected $fillable = [
         'name', 'email', 'website'
     ];
+
+    public function animals()
+    {
+        return $this->hasMany(Animal::class);
+    }
 }

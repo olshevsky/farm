@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Farm;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateFarmRequest extends FormRequest
@@ -30,6 +29,7 @@ class UpdateFarmRequest extends FormRequest
             'name' => 'string|max:255',
             'email' => 'email|nullable',
             'website' => 'url|nullable',
+            'animals' => 'nullable|exists:animals,id,user_id,' . auth()->id(),
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Farm;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserFarmRequest extends FormRequest

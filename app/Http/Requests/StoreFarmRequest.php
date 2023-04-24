@@ -27,6 +27,7 @@ class StoreFarmRequest extends FormRequest
             'name' => 'string|max:255',
             'email' => 'email|nullable',
             'website' => 'url|nullable',
+            'animals' => 'nullable|exists:animals,id,user_id,' . auth()->id(),
         ];
     }
 }

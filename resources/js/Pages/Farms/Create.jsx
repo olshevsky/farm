@@ -1,14 +1,26 @@
-import React from 'react';
+import { React, useState }  from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Head, useForm, Link } from '@inertiajs/inertia-react';
+import {Head, useForm, Link, usePage} from '@inertiajs/inertia-react';
 
 export default function Dashboard(props) {
+
+    const [selectedAnimals, setSelectedAnimals] = useState([]);
+    const { animals } = usePage().props;
 
     const { data, setData, errors, post } = useForm({
         name: "",
         email: "",
-        website: ""
+        website: "",
+        animals: []
     });
+
+    const handleAnimalChange = (event) => {
+        const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+        if (selectedOptions.length <= 3) {
+            setSelectedAnimals(selectedOptions);
+            data.animals = selectedOptions;
+        }
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -85,6 +97,25 @@ export default function Dashboard(props) {
                                         />
                                         <span className="text-red-600">
                                             {errors.website}
+                                        </span>
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="">Animals</label>
+                                        <select
+                                            name="animals"
+                                            multiple
+                                            value={data.animals}
+                                            onChange={handleAnimalChange}
+                                            className="mt-1 block w-full pl-3 pr-10 py-2 text-base focus:outline-none"
+                                        >
+                                            {animals.map((animal) => (
+                                                <option key={animal.id} value={animal.id}>
+                                                    { `${animal.type} ${animal.number} (${animal.years})` }
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <span className="text-red-600">
+                                            {errors.animals}
                                         </span>
                                     </div>
                                 </div>

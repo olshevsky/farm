@@ -32,7 +32,12 @@ class FarmController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Farms/Create');
+        return Inertia::render('Farms/Create', [
+            'animals' => Auth::user()
+                ->animals()
+                ->whereNull('farm_id')
+                ->get()
+        ]);
     }
 
     /**
@@ -47,6 +52,11 @@ class FarmController extends Controller
         $farm->fill($request->all());
         $farm->user_id = Auth::user()->id;
         $farm->save();
+
+        Auth::user()
+            ->animals()
+            ->whereIn('id', $request->get('animals'))
+            ->update(['farm_id' => $farm->id]);
 
         return redirect()->route('farms.index');
     }
@@ -71,7 +81,16 @@ class FarmController extends Controller
     public function edit(UserFarmRequest $request, Farm $farm)
     {
         return Inertia::render('Farms/Edit', [
-            'farm' => $farm
+            'farm' => $farm,
+            'selectedAnimals' => $farm
+                ->animals()
+                ->get()
+                ->pluck('id'),
+            'animals' => Auth::user()
+                ->animals()
+                ->whereNull('farm_id')
+                ->orWhere('farm_id', $farm->id)
+                ->get()
         ]);
     }
 
@@ -97,6 +116,10 @@ class FarmController extends Controller
      */
     public function destroy(UserFarmRequest $request, Farm $farm)
     {
+        Auth::user()
+            ->animals()
+            ->find($farm->id)
+            ->update(['farm_id' => NULL]);
         $farm->delete();
         return redirect()->route('farms.index');
     }

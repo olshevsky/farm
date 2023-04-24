@@ -40,55 +40,53 @@ export default function Dashboard(props) {
 
                             <form name="createForm" onSubmit={handleSubmit}>
                                 <div className="flex flex-col">
-                                    <div className="flex flex-col">
-                                        <div className="mb-4">
-                                            <label className="">Number</label>
-                                            <input
-                                                type="text"
-                                                className="w-full px-4 py-2"
-                                                label="Number"
-                                                name="number"
-                                                value={data.number}
-                                                onChange={(e) =>
-                                                    setData("number", e.target.value)
-                                                }
-                                            />
-                                            <span className="text-red-600">
+                                    <div className="mb-4">
+                                        <label className="">Number</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-4 py-2"
+                                            label="Number"
+                                            name="number"
+                                            value={data.number}
+                                            onChange={(e) =>
+                                                setData("number", e.target.value)
+                                            }
+                                        />
+                                        <span className="text-red-600">
                                             {errors.number}
                                         </span>
-                                        </div>
-                                        <div className="mb-4">
-                                            <label className="">Type name</label>
-                                            <input
-                                                type="text"
-                                                className="w-full px-4 py-2"
-                                                label="Type name"
-                                                name="type"
-                                                value={data.type}
-                                                onChange={(e) =>
-                                                    setData("type", e.target.value)
-                                                }
-                                            />
-                                            <span className="text-red-600">
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="">Type name</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-4 py-2"
+                                            label="Type name"
+                                            name="type"
+                                            value={data.type}
+                                            onChange={(e) =>
+                                                setData("type", e.target.value)
+                                            }
+                                        />
+                                        <span className="text-red-600">
                                             {errors.type}
                                         </span>
-                                        </div>
-                                        <div className="mb-4">
-                                            <label className="">Years</label>
-                                            <input
-                                                type="text"
-                                                className="w-full px-4 py-2"
-                                                label="Years"
-                                                name="years"
-                                                value={data.years}
-                                                onChange={(e) =>
-                                                    setData("years", e.target.value)
-                                                }
-                                            />
-                                            <span className="text-red-600">
+                                    </div>
+                                    <div className="mb-4">
+                                        <label className="">Years</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-4 py-2"
+                                            label="Years"
+                                            name="years"
+                                            value={data.years}
+                                            onChange={(e) =>
+                                                setData("years", e.target.value)
+                                            }
+                                        />
+                                        <span className="text-red-600">
                                             {errors.years}
                                         </span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div className="mt-4">
