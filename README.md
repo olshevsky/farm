@@ -5,11 +5,7 @@
     - git clone https://github.com/olshevsky/farm.git
     - cd ./farm
 
-1. If you have globally installed php and composer run:
-    - composer require laravel/sail --dev
-    - php artisan sail:install
-    
-   If not run:
+1. Run:
    - mkdir vendor
    - make sure ./vendor folder has write permissions
    - docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
