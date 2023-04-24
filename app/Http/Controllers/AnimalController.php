@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserAnimalRequest;
 use App\Http\Requests\StoreAnimalRequest;
+use App\Http\Requests\UpdateAnimalRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\Animal;
@@ -52,21 +54,21 @@ class AnimalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Animal $animal
      */
-    public function show($id)
+    public function show(Animal $animal)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in storage.
      *
+     * @param UserAnimalRequest $request
      * @param Animal $animal
      * @return \Inertia\Response
      */
-    public function edit(Animal $animal)
+    public function edit(UserAnimalRequest $request, Animal $animal)
     {
         return Inertia::render('Animals/Edit', [
             'animal' => $animal
@@ -76,25 +78,26 @@ class AnimalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreAnimalRequest $request
-     * @param $id
+     * @param UpdateAnimalRequest $request
+     * @param Animal $animal
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreAnimalRequest $request, $id)
+    public function update(UpdateAnimalRequest $request, Animal $animal)
     {
-        Animal::find($id)->update($request->all());
+        $animal->update($request->all());
         return redirect()->route('animals.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param UserAnimalRequest $request
+     * @param Animal $animal
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(UserAnimalRequest $request, Animal $animal)
     {
-        Animal::find($id)->delete();
+        $animal->delete();
         return redirect()->route('animals.index');
     }
 }

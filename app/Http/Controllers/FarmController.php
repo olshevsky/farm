@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFarmRequest;
 use App\Http\Requests\StoreFarmRequest;
+use App\Http\Requests\UpdateFarmRequest;
 use App\Models\Farm;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,8 @@ class FarmController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreFarmRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreFarmRequest $request)
     {
@@ -52,10 +54,9 @@ class FarmController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Farm $farm
      */
-    public function show($id)
+    public function show(Farm $farm)
     {
         //
     }
@@ -63,10 +64,11 @@ class FarmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param UserFarmRequest $request
      * @param Farm $farm
      * @return \Inertia\Response
      */
-    public function edit(Farm $farm)
+    public function edit(UserFarmRequest $request, Farm $farm)
     {
         return Inertia::render('Farms/Edit', [
             'farm' => $farm
@@ -76,25 +78,26 @@ class FarmController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreFarmRequest $request
-     * @param $id
+     * @param UpdateFarmRequest $request
+     * @param Farm $farm
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreFarmRequest $request, $id)
+    public function update(UpdateFarmRequest $request, Farm $farm)
     {
-        Farm::find($id)->update($request->all());
+        $farm->update($request->all());
         return redirect()->route('farms.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
+     * @param UserFarmRequest $request
+     * @param Farm $farm
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(UserFarmRequest $request, Farm $farm)
     {
-        Farm::find($id)->delete();
+        $farm->delete();
         return redirect()->route('farms.index');
     }
 }
