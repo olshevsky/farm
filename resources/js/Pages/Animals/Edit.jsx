@@ -2,7 +2,7 @@ import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, useForm, usePage, Link } from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function AnimalEdit(props) {
 
     const { animal } = usePage().props;
     const { data, setData, put, errors } = useForm({

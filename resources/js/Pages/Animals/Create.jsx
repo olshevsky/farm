@@ -2,7 +2,7 @@ import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, useForm, Link } from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function AnimalCreate(props) {
 
     const { data, setData, errors, post } = useForm({
         number: "",

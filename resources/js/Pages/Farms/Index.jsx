@@ -4,7 +4,7 @@ import Pagination from "@/Components/Pagination";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function FarmIndex(props) {
     const { farms } = usePage().props
 
     function destroy(e) {

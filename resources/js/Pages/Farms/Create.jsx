@@ -2,7 +2,7 @@ import { React, useState }  from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import {Head, useForm, Link, usePage} from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function FarmCreate(props) {
 
     const [selectedAnimals, setSelectedAnimals] = useState([]);
     const { animals } = usePage().props;

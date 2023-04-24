@@ -19,21 +19,13 @@ use App\Http\Controllers\FarmController;
 */
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [AnimalController::class, 'index']);
     Route::resource('animals', AnimalController::class);
     Route::resource('farms', FarmController::class);
 });
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/dashboard', function () {
+//    return Inertia::render('Dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
