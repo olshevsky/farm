@@ -30,7 +30,7 @@ Note there is .env file in repo for quick setup, but all api keys will be revoke
 6. Install dependencies, build assets, create storage symlink and run migrations:
     - composer install
     - php artisan migrate
-    - php artisan db:seed --class=UserSeeder
+    - php artisan db:seed
     - php artisan storage:link
     - npm install
     - npm run build
@@ -39,6 +39,10 @@ Note there is .env file in repo for quick setup, but all api keys will be revoke
     - docker exec -it {CONTAINER ID} /bin/sh
     - npm run dev 
     
-8. Url:
-   App: http://localhost
-   Admin login: http://localhost/login admin@localhost/admin
+8. Urls:
+   - App: http://localhost
+        1. admin@localhost/admin
+        2. user@localhost/user
+       
+   - PhpMyadmin: http://localhost:8080
+       1. root/password
