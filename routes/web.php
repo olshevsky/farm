@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\TicTacController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [AnimalController::class, 'index']);
     Route::resource('animals', AnimalController::class);
     Route::resource('farms', FarmController::class);
+    Route::get('/tictac', [TicTacController::class, 'index'])->name('tictac.index');
 });
-
-//Route::get('/dashboard', function () {
-//    return Inertia::render('Dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

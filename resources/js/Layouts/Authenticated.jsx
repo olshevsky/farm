@@ -21,12 +21,14 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-
                                 <NavLink href={route('animals.index')} active={route().current('animals.index')}>
                                     Animals
                                 </NavLink>
                                 <NavLink href={route('farms.index')} active={route().current('farms.index')}>
                                     Farms
+                                </NavLink>
+                                <NavLink href={route('tictac.index')} active={route().current('tictac.index')}>
+                                    Tic Tac
                                 </NavLink>
                             </div>
                         </div>
